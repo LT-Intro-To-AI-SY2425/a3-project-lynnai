@@ -10,3 +10,7 @@ def get_developer(game: Tuple[str, str, str, int]) -> str:
 
 def get_genre(game: Tuple[str, str, str, int]) -> str:
     return game[2]
+
+def get_year(game: Tuple[str, str, str, int]) -> int:
+    return game[3]
+
