@@ -1,6 +1,6 @@
 from games import game_db
 from match import match
-from typing import List, Tuple
+from typing import List, Tuple, Callable, Any
 
 # projection functions
 
@@ -117,3 +117,12 @@ def genre_by_title(matches: List[str]) -> List[str]:
         if get_title(game) == title:
             result.append(get_genre(game))
     return result
+
+def bye_action(dummy: List[str]) -> None:
+    raise KeyboardInterrupt
+
+pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
+    (str.split("What games were made in _"), title_by_year),
+    (str.split("What games were made between _ and _"), title_by_year_range),
+    
+]
