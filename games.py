@@ -78,5 +78,17 @@ game_db: List[Tuple[str, str, str, int]] = [
         "team salvato",
         "visual novel",
         2017,
+    ),
+    (
+        "mortal kombat",
+        "netherrealm studios",
+        "fighting",
+        1992,
+    ),
+    (
+        "until dawn",
+        "supermassive games",
+        "horror",
+        2015,
     ),  
 ] 
