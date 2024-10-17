@@ -42,6 +42,15 @@ def title_before_year(matches: List[str]) -> List[str]:
     year = int(matches[0])
     result = []
     for game in game_db:
+        if get_year(game) < year:
+            result.append(get_title(game))
+    return result
+
+def title_after_year(matches: List[str]) -> List[str]:
+    """Returns titles of games made after the passed-in year"""
+    year = int(matches[0])
+    result = []
+    for game in game_db:
         if get_year(game) > year:
             result.append(get_title(game))
     return result
@@ -122,7 +131,44 @@ def bye_action(dummy: List[str]) -> None:
     raise KeyboardInterrupt
 
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("What games were made in _"), title_by_year),
-    (str.split("What games were made between _ and _"), title_by_year_range),
-    
+    (str.split("what games were made in _"), title_by_year),
+    (str.split("what games were made between _ and _"), title_by_year_range),
+    (str.split("what games were made before _"), title_before_year),
+    (str.split("what games were made after _"), title_after_year),
+    (str.split("what games fall under %"), title_by_genre),
+    (str.split("what games are developed by %"), title_by_developer),
+    (str.split("who developed a game in _"), developer_by_year),
+    (str.split("who developed a game under %"), developer_by_genre),
+    (str.split("who developed %"), developer_by_title),
+    (str.split("who was the developer of %"), developer_by_title),
+    (str.split("what genres of games were developed in _"), genre_by_year),
+    (str.split("what genre of game was developed by %"), genre_by_developer),
+    (str.split("what is the genre of %"), genre_by_title),
+    (["bye"], bye_action),
 ]
+
+def search_pa_list(src: List[str]) -> List[str]:
+    for pattern, action in pa_list:
+        mat = match(pattern, src)
+        if mat != None:
+            result = action(mat)
+            return result
+        if mat == []:
+            return ["No answers"]
+    return ["I don't understand"]
+
+def query_loop() -> None:
+    print("Welcome to the video game database!\n")
+    while True:
+        try:
+            print()
+            query = input("Your query? ").replace("?", "").lower().split()
+            answers = search_pa_list(query)
+            for ans in answers:
+                print(ans)
+        except(KeyboardInterrupt, EOFError):
+            break
+    print("\nGoodbye!\n")
+
+query_loop()
+
