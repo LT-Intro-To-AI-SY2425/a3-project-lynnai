@@ -160,10 +160,12 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
 def search_pa_list(src: List[str]) -> List[str]:
     for pattern, action in pa_list:
         mat = match(pattern, src)
-        if mat == []:
-            return ["No answers"]
+        # print(mat)
         if mat != None:
             result = action(mat)
+            # print(result)
+            if result == []:
+                return ["No answers"]
             return result
     return ["I don't understand"]
 
