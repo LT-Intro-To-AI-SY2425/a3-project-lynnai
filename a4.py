@@ -55,6 +55,15 @@ def title_after_year(matches: List[str]) -> List[str]:
             result.append(get_title(game))
     return result
 
+def year_by_title(matches: List[str]) -> List[str]:
+    """Returns year of passed-in title of a game"""
+    title = matches[0]
+    result = []
+    for game in game_db:
+        if get_title(game) == title:
+            result.append(get_year(game))
+    return result
+
 def title_by_genre(matches: List[str]) -> List[str]:
     """ Returns titles of games that match the passed-in genre"""
     genre = matches[0]
@@ -135,6 +144,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("what games were made between _ and _"), title_by_year_range),
     (str.split("what games were made before _"), title_before_year),
     (str.split("what games were made after _"), title_after_year),
+    (str.split("when was % made"), year_by_title),
     (str.split("what games fall under %"), title_by_genre),
     (str.split("what games are developed by %"), title_by_developer),
     (str.split("who developed a game in _"), developer_by_year),
@@ -150,11 +160,11 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
 def search_pa_list(src: List[str]) -> List[str]:
     for pattern, action in pa_list:
         mat = match(pattern, src)
+        if mat == []:
+            return ["No answers"]
         if mat != None:
             result = action(mat)
             return result
-        if mat == []:
-            return ["No answers"]
     return ["I don't understand"]
 
 def query_loop() -> None:
