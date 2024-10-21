@@ -16,7 +16,7 @@ def get_genre(game: Tuple[str, str, str, int]) -> str:
 def get_year(game: Tuple[str, str, str, int]) -> int:
     return game[3]
 
-#action functions
+# action functions
 
 def title_by_year(matches: List[str]) -> List[str]:
     """ Returns titles of games made in the passed-in year """
