@@ -90,5 +90,41 @@ game_db: List[Tuple[str, str, str, int]] = [
         "supermassive games",
         "horror",
         2015,
-    ),  
+    ),
+    (
+        "undertale",
+        "toby fox",
+        "role-playing game",
+        2015,
+    ),
+    (
+        "60 seconds",
+        "robot gentleman",
+        "action-adventure",
+        2015,
+    ),
+    (
+        "sally face",
+        "portable moose",
+        "adventure",
+        2016,
+    ),
+    (
+        "getting over it",
+        "bennett foddy",
+        "platformer",
+        2017,
+    ),
+    (
+        "the sims",
+        "maxis",
+        "social simulation",
+        2000,
+    ),
+    (
+        "animal crossing",
+        "monolith soft",
+        "social simulation",
+        2001,
+    )
 ] 
