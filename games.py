@@ -126,5 +126,23 @@ game_db: List[Tuple[str, str, str, int]] = [
         "monolith soft",
         "social simulation",
         2001,
+    ),
+    (
+        "the stanley parable",
+        "galactic cafe",
+        "interactive narrative",
+        2013,
+    ),
+    (
+        "the henry stickmin collection",
+        "puffballs united",
+        "point-and-click",
+        2020,
+    ),
+    (
+        "what remains of edith finch",
+        "giant sparrow",
+        "interactive narrative",
+        2017,
     )
 ] 
